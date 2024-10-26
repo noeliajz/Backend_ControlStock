@@ -1,5 +1,5 @@
-const Producto= require( "../models/modeloProducto")
-const Usuario = require("../models/modeloUsuario")
+const Producto= require( "../models/producto")
+const Usuario = require("../models/usuario")
 
  const crearProducto = async (req, res) => {
    try {
@@ -53,18 +53,24 @@ const Usuario = require("../models/modeloUsuario")
 
  const obtenerUnProducto = async(req, res) => {
     try {
-        const id = req.params.id
-        const producto = await Usuario.findById({_id: req.params.id}) 
-        res.status(200).json({
-            mensaje: 'se encontró el producto',
-            producto
-        })
-    } catch (error) {
-        console.log(error)
-        res.status(404).json({
-            mensaje: 'error al encontrar el producto'
-        })
-    }
+        const { id } = req.params;
+    
+        // Check if the ID is a valid ObjectId
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+          return res.status(400).json({ error: 'Invalid ID format' });
+        }
+    
+        const usuario = await Usuario.findById(id);
+    
+        if (!usuario) {
+          return res.status(404).json({ message: 'User not found' });
+        }
+    
+        res.json(usuario);
+      } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Server error' });
+      }
 }
 
  const eliminarProducto = async (req, res) => {
