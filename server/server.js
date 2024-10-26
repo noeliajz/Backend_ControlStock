@@ -4,8 +4,14 @@ class Server{
     constructor(){
         this.app = express()
         this.port = process.env.PORT || 8080
+        this.middlewares()
         this.routes()
     }
+    middlewares(){
+        this.app.use(express.json())
+    }
+
+
     routes(){
         this.app.use('/apiStock', require('../routes/usuario'))
     }
