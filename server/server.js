@@ -15,7 +15,7 @@ class Server{
     routes(){
         this.app.use('/apiStock/usuario', require('../routes/usuario'))
         this.app.use('/apiStock/producto', require('../routes/producto'))
-
+        this.app.use('/apiStock/carrito', require('../routes/carrito'))
     }
     listen(){
         this.app.listen(this.port, () => {

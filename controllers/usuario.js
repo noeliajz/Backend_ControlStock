@@ -99,7 +99,7 @@ const eliminarUsuario = async(req, res) => {
       }
 }
 
-const iniciarSesion = async (req, res) => {
+ const iniciarSesion = async (req, res) => {
     console.log(req.body);
     try {
       let usuario = await Usuario.findOne({ email: req.body.email });
@@ -140,8 +140,9 @@ const iniciarSesion = async (req, res) => {
         mensaje: "No se pudo iniciar sesión",
       });
     }
-}
-
+} 
+    
+   
 module.exports = {
     obtenerTodosUsuarios,
     obtenerUnUsuario,
