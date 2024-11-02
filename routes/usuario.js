@@ -34,11 +34,11 @@ router.put('/:id', [
 ],  editarUsuario)
 router.delete('/:id', eliminarUsuario)
 router.post('/iniciarSesion', [
-    check('usuario', 'El campo USUARIO esta vacío').notEmpty(),
-   check('usuario', 'El mínimo es de 3 caracteres').isLength({ min:3 , max: 15}),
-   check('usuario', 'El campo USUARIO debe ser del tipo MAIL').isEmail(),
-   check('pass', 'El campo contraseña esta vacío').notEmpty(), 
-   check('pass', 'El mínimo es de 3 caracteres y máximo 15').isLength({ min:3 , max: 15})
+    check('email', 'El campo EMAIL esta vacío').notEmpty(),
+   check('email', 'El mínimo es de 3 caracteres').isLength({ min:3 , max: 15}),
+   check('email', 'El campo EMAIL debe ser del tipo MAIL').isEmail(),
+   check('contrasenia', 'El campo contraseña esta vacío').notEmpty(), 
+   check('contrasenia', 'El mínimo es de 3 caracteres y máximo 15').isLength({ min:3 , max: 15})
 ], iniciarSesion)
 
 module.exports = router
