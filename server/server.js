@@ -1,5 +1,6 @@
 const express = require('express')
-
+const morgan = require('morgan')
+const cors = require('cors')
 class Server{
     constructor(){
         this.app = express()
@@ -9,13 +10,16 @@ class Server{
     }
     middlewares(){
         this.app.use(express.json())
+        this.app.use(morgan('dev'))
+        this.app.use(express.static('public'))
+        this.app.use(cors());
     }
 
 
     routes(){
         this.app.use('/apiStock/usuario', require('../routes/usuario'))
         this.app.use('/apiStock/producto', require('../routes/producto'))
-
+        this.app.use('/apiStock/carrito', require('../routes/carrito'))
     }
     listen(){
         this.app.listen(this.port, () => {
